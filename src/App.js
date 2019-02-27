@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Book from "./Book";
 import "./App.css"
 import SearchBar from "./SearchBar";
+import BooksList from "./BooksList";
 
 class App extends Component {
 
@@ -12,24 +12,37 @@ class App extends Component {
         this.state = {
             booksList: [],
         };
-        this.onSearchClicked.bind(this);
+        this.onSearchClicked = this.onSearchClicked.bind(this);
+        this.findBooks = this.findBooks.bind(this);
     }
 
     onSearchClicked(query) {
-        console.log("onSearchClicked "+query);
+        this.findBooks(query);
     }
 
-    componentDidMount() {
-        fetch('https://www.googleapis.com/books/v1/volumes?q=bogota')
+    findBooks(query) {
+        fetch('https://www.googleapis.com/books/v1/volumes?q=' + query)
             .then(response => response.json())
-            .then(data => this.setState({booksList: data.items}));
+            .then(data => {
+                let booksList = [];
+                data.items.forEach(function (book) {
+                    booksList.push({
+                        title: book.volumeInfo.title,
+                        image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "",
+                        language: book.volumeInfo.language
+                    })
+
+                });
+                this.setState({booksList: booksList});
+            });
+
     }
 
     render() {
         return (
             <div className="App">
                 <SearchBar onSearchClicked={this.onSearchClicked}/>
-                <Book authors="Alan Gilbert y María Teresa Garcés" title="Bogotá"/>
+                <BooksList booksList={this.state.booksList}/>
             </div>
         );
     }

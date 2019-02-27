@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
     card: {
         display: 'flex',
+        marginBottom: 15
     },
     details: {
         display: 'flex',
@@ -29,16 +30,16 @@ function MediaControlCard(props) {
         <Card className={classes.card}>
             <CardMedia
                 className={classes.cover}
-                image="http://books.google.com/books/content?id=V0JtAOas3m8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+                image={props.image}
                 title={props.title}
             />
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
+                    <Typography component="h6" variant="h6">
                         {props.title}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                       Authores: {props.authors}
+                       Language: {props.language}
                     </Typography>
                 </CardContent>
 
