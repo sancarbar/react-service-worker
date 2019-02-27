@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-
+import React, {Component} from 'react';
+import Book from "./Book";
+import "./App.css"
 
 class App extends Component {
 
@@ -15,16 +16,17 @@ class App extends Component {
     componentDidMount() {
         fetch('https://www.googleapis.com/books/v1/volumes?q=bogota')
             .then(response => response.json())
-            .then(data => this.setState({ booksList: data.items }));
+            .then(data => this.setState({booksList: data.items}));
     }
 
-  render() {
-    return (
-      <div>
-       <h2>Hello Service Workers!</h2>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <h2>Hello Service Workers!</h2>
+                <Book authors="Alan Gilbert y María Teresa Garcés" title="Bogotá"/>
+            </div>
+        );
+    }
 }
 
 export default App;
