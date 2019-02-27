@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Book from "./Book";
 import "./App.css"
+import SearchBar from "./SearchBar";
 
 class App extends Component {
 
@@ -22,7 +23,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h2>Hello Service Workers!</h2>
+                <SearchBar/>
                 <Book authors="Alan Gilbert y María Teresa Garcés" title="Bogotá"/>
             </div>
         );
