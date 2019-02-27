@@ -12,6 +12,11 @@ class App extends Component {
         this.state = {
             booksList: [],
         };
+        this.onSearchClicked.bind(this);
+    }
+
+    onSearchClicked(query) {
+        console.log("onSearchClicked "+query);
     }
 
     componentDidMount() {
@@ -23,7 +28,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <SearchBar/>
+                <SearchBar onSearchClicked={this.onSearchClicked}/>
                 <Book authors="Alan Gilbert y María Teresa Garcés" title="Bogotá"/>
             </div>
         );
