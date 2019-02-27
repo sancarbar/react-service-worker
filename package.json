@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "buildeploy": "npm run build && /usr/local/Cellar/node/9.7.1/bin/firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
